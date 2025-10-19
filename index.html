@@ -1,109 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Novely Gasis Jr. | Aspiring Web Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Dashboard - Your Personal Wellness Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <nav class="navbar container">
-      <div class="logo">Novely Gasis Jr.</div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="nav-item active">Home</a></li>
-        <li><a href="#about" class="nav-item">About</a></li>
-        <li><a href="#projects" class="nav-item">Projects</a></li>
-        <li><a href="#skills" class="nav-item">Skills</a></li>
-      </ul>
-      <div class="nav-icons">
-        <div class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</div>
-        <div class="menu-toggle" id="menu-toggle">☰</div>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">🌟 Life Dashboard</h1>
+        <div class="header-actions">
+          <div class="date-display" id="current-date"></div>
+          <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+            <span class="theme-icon">🌙</span>
+          </button>
+        </div>
       </div>
-    </nav>
+    </div>
   </header>
 
-  <!-- ✅ Hero Section -->
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <img src="image.jpg" alt="Profile" class="profile-pic" />
-      <h1>Hi, I'm <span>Novely Gasis Jr.</span></h1>
-      <h2 class="typewriter">Aspiring Web Developer</h2>
-      <p>
-        I’m passionate about learning how to build clean, creative, and responsive websites using
-        <strong>HTML, CSS, and JavaScript.</strong>  
-        This portfolio showcases my learning journey and future projects as I grow in web development.
-      </p>
-      <a href="#projects" class="btn scroll-btn">See My Journey</a>
-    </div>
-  </section>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Welcome Section -->
+      <section class="welcome-section">
+        <h2 class="greeting" id="greeting">Good Morning! 👋</h2>
+        <p class="subtitle">Track your daily progress and build better habits</p>
+      </section>
 
-  <!-- ✅ About Me Section -->
-  <section id="about" class="reveal">
-    <h2>About Me</h2>
-    <div class="container about-content">
-      <p>
-        I’m <strong>Novely Aguilar Gasis Jr.</strong>, an <strong>aspiring web developer</strong> and recent
-        <strong>BS Computer Science graduate</strong> from Capiz State University.
-      </p>
+      <!-- Stats Overview -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h3 class="stat-value" id="tasks-completed">0</h3>
+            <p class="stat-label">Tasks Done</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💧</div>
+          <div class="stat-content">
+            <h3 class="stat-value" id="water-count">0</h3>
+            <p class="stat-label">Glasses of Water</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-content">
+            <h3 class="stat-value" id="habit-streak">0</h3>
+            <p class="stat-label">Day Streak</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" id="mood-icon">😊</div>
+          <div class="stat-content">
+            <h3 class="stat-value">Mood</h3>
+            <p class="stat-label">Today's Feeling</p>
+          </div>
+        </div>
+      </section>
 
-      <p>
-        I’m on a journey to improve my front-end development skills and learn how to create meaningful, user-friendly web experiences.
-        My goal is to grow as a developer who builds digital solutions that make a positive impact.
-      </p>
+      <!-- Main Grid -->
+      <div class="dashboard-grid">
+        
+        <!-- Tasks Section -->
+        <section class="card tasks-card">
+          <div class="card-header">
+            <h3 class="card-title">📋 Daily Tasks</h3>
+            <span class="task-counter" id="task-counter">0 / 0</span>
+          </div>
+          <div class="card-content">
+            <div class="input-group">
+              <input 
+                type="text" 
+                id="task-input" 
+                class="input-field"
+                placeholder="Add a new task..."
+                maxlength="100"
+              >
+              <button class="btn btn-primary" id="add-task-btn">Add</button>
+            </div>
+            <ul class="task-list" id="task-list"></ul>
+          </div>
+        </section>
 
-      <div class="about-extra">
-        <p><strong>🎓 Education:</strong> Bachelor of Science in Computer Science — Capiz State University (July 2025)</p>
-        <p><strong>💡 Core Traits:</strong> Curiosity, Dedication, Problem-Solving, Continuous Learning</p>
-        <p><strong>🎨 Interests:</strong> Designing, Drawing, and DIY projects</p>
+        <!-- Water Tracker -->
+        <section class="card water-card">
+          <div class="card-header">
+            <h3 class="card-title">💧 Water Tracker</h3>
+            <button class="btn-reset" id="reset-water">Reset</button>
+          </div>
+          <div class="card-content">
+            <div class="water-goal">
+              <p class="water-text">Daily Goal: 8 glasses</p>
+              <div class="progress-bar">
+                <div class="progress-fill" id="water-progress"></div>
+              </div>
+            </div>
+            <div class="water-controls">
+              <button class="btn btn-water" id="add-water">+ Add Glass</button>
+              <button class="btn btn-secondary" id="remove-water">- Remove</button>
+            </div>
+            <div class="water-glasses" id="water-glasses"></div>
+          </div>
+        </section>
+
+        <!-- Mood Tracker -->
+        <section class="card mood-card">
+          <div class="card-header">
+            <h3 class="card-title">😊 Mood Tracker</h3>
+          </div>
+          <div class="card-content">
+            <p class="mood-question">How are you feeling today?</p>
+            <div class="mood-grid">
+              <button class="mood-btn" data-mood="😄" title="Great">😄</button>
+              <button class="mood-btn" data-mood="😊" title="Happy">😊</button>
+              <button class="mood-btn" data-mood="😐" title="Okay">😐</button>
+              <button class="mood-btn" data-mood="😔" title="Sad">😔</button>
+              <button class="mood-btn" data-mood="😫" title="Stressed">😫</button>
+            </div>
+            <div class="mood-history" id="mood-history"></div>
+          </div>
+        </section>
+
+        <!-- Habits Tracker -->
+        <section class="card habits-card">
+          <div class="card-header">
+            <h3 class="card-title">✅ Daily Habits</h3>
+          </div>
+          <div class="card-content">
+            <div class="input-group">
+              <input 
+                type="text" 
+                id="habit-input" 
+                class="input-field"
+                placeholder="Add a new habit..."
+                maxlength="50"
+              >
+              <button class="btn btn-primary" id="add-habit-btn">Add</button>
+            </div>
+            <ul class="habits-list" id="habits-list"></ul>
+          </div>
+        </section>
+
+        <!-- Notes Section -->
+        <section class="card notes-card">
+          <div class="card-header">
+            <h3 class="card-title">📝 Quick Notes</h3>
+            <button class="btn-reset" id="clear-notes">Clear</button>
+          </div>
+          <div class="card-content">
+            <textarea 
+              id="notes-area" 
+              class="notes-textarea"
+              placeholder="Write your thoughts, goals, or reminders here..."
+            ></textarea>
+          </div>
+        </section>
+
+        <!-- Motivational Quote -->
+        <section class="card quote-card">
+          <div class="card-header">
+            <h3 class="card-title">💭 Daily Inspiration</h3>
+            <button class="btn-reset" id="new-quote">New</button>
+          </div>
+          <div class="card-content">
+            <blockquote class="quote" id="quote-text"></blockquote>
+            <p class="quote-author" id="quote-author"></p>
+          </div>
+        </section>
+
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- ✅ Learning Journey / Projects -->
-  <section id="projects" class="reveal">
-    <h2>My Learning Journey</h2>
-    <div class="container projects-grid">
-      <div class="project-card">
-        <h3>🌱 Beginner Portfolio Website</h3>
-        <p>
-          This very website is my first major project — built using only HTML, CSS, and JavaScript as I learn and practice front-end web development.
-        </p>
-      </div>
-
-      <div class="project-card">
-        <h3>💻 Simple Login Form (Practice)</h3>
-        <p>
-          A small project where I practiced form validation and basic styling using HTML, CSS, and vanilla JavaScript.
-        </p>
-      </div>
-
-      <div class="project-card upcoming">
-        <h3>🚧 Future Project Coming Soon!</h3>
-        <p>
-          I’m continuously learning and exploring new technologies — more projects will be added as I progress!
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ✅ Skills -->
-  <section id="skills" class="reveal">
-    <h2>Skills I’m Learning</h2>
-    <div class="container skills-grid">
-      <span class="skill-tag">HTML5</span>
-      <span class="skill-tag">CSS3</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Responsive Design</span>
-      <span class="skill-tag">Git / GitHub</span>
-      <span class="skill-tag">Canva (Design)</span>
-      <span class="skill-tag">Continuous Learning</span>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; <span id="year-footer"></span> Novely Aguilar Gasis Jr. | Aspiring Web Developer</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Life Dashboard - Track Your Journey</p>
   </footer>
 
   <script src="script.js"></script>
