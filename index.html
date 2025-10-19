@@ -1,111 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Novely Gasis Jr. | Aspiring Web Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Life Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav class="navbar container">
-      <div class="logo">Novely Gasis Jr.</div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="nav-item active">Home</a></li>
-        <li><a href="#about" class="nav-item">About</a></li>
-        <li><a href="#projects" class="nav-item">Projects</a></li>
-        <li><a href="#skills" class="nav-item">Skills</a></li>
-      </ul>
-      <div class="nav-icons">
-        <div class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</div>
-        <div class="menu-toggle" id="menu-toggle">☰</div>
-      </div>
-    </nav>
-  </header>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> Life Dashboard</h1>
+                <div class="user-info">
+                    <span class="date" id="currentDate"></span>
+                    <div class="theme-toggle">
+                        <button id="themeToggle"><i class="fas fa-moon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-  <!-- ✅ Hero Section -->
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <img src="image.jpg" alt="Profile" class="profile-pic" />
-      <h1>Hi, I'm <span>Novely Gasis Jr.</span></h1>
-      <h2 class="typewriter">Aspiring Web Developer</h2>
-      <p>
-        I’m passionate about learning how to build clean, creative, and responsive websites using
-        <strong>HTML, CSS, and JavaScript.</strong>  
-        This portfolio showcases my learning journey and future projects as I grow in web development.
-      </p>
-      <a href="#projects" class="btn scroll-btn">See My Journey</a>
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#health" class="nav-link" data-section="health"><i class="fas fa-heartbeat"></i> Health</a></li>
+                <li><a href="#finance" class="nav-link" data-section="finance"><i class="fas fa-wallet"></i> Finance</a></li>
+                <li><a href="#goals" class="nav-link" data-section="goals"><i class="fas fa-target"></i> Goals</a></li>
+                <li><a href="#habits" class="nav-link" data-section="habits"><i class="fas fa-calendar-check"></i> Habits</a></li>
+                <li><a href="#schedule" class="nav-link" data-section="schedule"><i class="fas fa-clock"></i> Schedule</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                    <p>Your life at a glance</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-heartbeat"></i> Health Score</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="score-circle">
+                                <span class="score" id="healthScore">85</span>
+                                <span class="score-label">%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-wallet"></i> Monthly Budget</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="budget-info">
+                                <div class="budget-spent">$<span id="budgetSpent">1,250</span></div>
+                                <div class="budget-total">of $<span id="budgetTotal">2,000</span></div>
+                                <div class="budget-bar">
+                                    <div class="budget-progress" id="budgetProgress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-target"></i> Goals Progress</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="goals-summary">
+                                <div class="goal-item">
+                                    <span>Completed: <strong id="completedGoals">3</strong></span>
+                                </div>
+                                <div class="goal-item">
+                                    <span>In Progress: <strong id="activeGoals">5</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-check"></i> Habit Streak</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="streak-info">
+                                <div class="streak-number" id="habitStreak">12</div>
+                                <div class="streak-label">days</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activities">
+                    <h3>Recent Activities</h3>
+                    <div class="activity-list" id="activityList">
+                        <div class="activity-item">
+                            <i class="fas fa-running activity-icon"></i>
+                            <span>Completed 30-minute workout</span>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-dollar-sign activity-icon"></i>
+                            <span>Added expense: Groceries $85</span>
+                            <span class="activity-time">4 hours ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-check activity-icon"></i>
+                            <span>Completed goal: Read 20 pages</span>
+                            <span class="activity-time">Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Health Section -->
+            <section id="health" class="section">
+                <div class="section-header">
+                    <h2>Health & Wellness</h2>
+                    <p>Track your physical and mental well-being</p>
+                </div>
+
+                <div class="health-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Daily Metrics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="metric-input">
+                                <label>Steps</label>
+                                <input type="number" id="stepsInput" placeholder="8000">
+                                <button onclick="updateMetric('steps')">Update</button>
+                            </div>
+                            <div class="metric-input">
+                                <label>Water (glasses)</label>
+                                <input type="number" id="waterInput" placeholder="8">
+                                <button onclick="updateMetric('water')">Update</button>
+                            </div>
+                            <div class="metric-input">
+                                <label>Sleep (hours)</label>
+                                <input type="number" id="sleepInput" placeholder="7.5">
+                                <button onclick="updateMetric('sleep')">Update</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Mood Tracker</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="mood-selector">
+                                <button class="mood-btn" data-mood="1">😢</button>
+                                <button class="mood-btn" data-mood="2">😕</button>
+                                <button class="mood-btn" data-mood="3">😐</button>
+                                <button class="mood-btn" data-mood="4">😊</button>
+                                <button class="mood-btn" data-mood="5">😄</button>
+                            </div>
+                            <div class="mood-history" id="moodHistory"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Finance Section -->
+            <section id="finance" class="section">
+                <div class="section-header">
+                    <h2>Financial Management</h2>
+                    <p>Track your expenses and budget</p>
+                </div>
+
+                <div class="finance-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Add Expense</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="expense-form">
+                                <input type="text" id="expenseDescription" placeholder="Description">
+                                <input type="number" id="expenseAmount" placeholder="Amount">
+                                <select id="expenseCategory">
+                                    <option value="food">Food</option>
+                                    <option value="transport">Transport</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="utilities">Utilities</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <button onclick="addExpense()">Add Expense</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Expenses</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="expense-list" id="expenseList"></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Budget Overview</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="budget-categories" id="budgetCategories"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Goals Section -->
+            <section id="goals" class="section">
+                <div class="section-header">
+                    <h2>Goals & Objectives</h2>
+                    <p>Set and track your personal goals</p>
+                </div>
+
+                <div class="goals-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Add New Goal</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="goal-form">
+                                <input type="text" id="goalTitle" placeholder="Goal title">
+                                <textarea id="goalDescription" placeholder="Description"></textarea>
+                                <input type="date" id="goalDeadline">
+                                <select id="goalCategory">
+                                    <option value="personal">Personal</option>
+                                    <option value="career">Career</option>
+                                    <option value="health">Health</option>
+                                    <option value="financial">Financial</option>
+                                    <option value="education">Education</option>
+                                </select>
+                                <button onclick="addGoal()">Add Goal</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <h3>Your Goals</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="goals-list" id="goalsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Habits Section -->
+            <section id="habits" class="section">
+                <div class="section-header">
+                    <h2>Habit Tracker</h2>
+                    <p>Build positive habits and track your progress</p>
+                </div>
+
+                <div class="habits-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Add New Habit</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="habit-form">
+                                <input type="text" id="habitName" placeholder="Habit name">
+                                <select id="habitFrequency">
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                                <button onclick="addHabit()">Add Habit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <h3>Today's Habits</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="habits-list" id="habitsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section id="schedule" class="section">
+                <div class="section-header">
+                    <h2>Daily Schedule</h2>
+                    <p>Manage your time effectively</p>
+                </div>
+
+                <div class="schedule-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Add Event</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="event-form">
+                                <input type="text" id="eventTitle" placeholder="Event title">
+                                <input type="time" id="eventTime">
+                                <input type="date" id="eventDate">
+                                <textarea id="eventDescription" placeholder="Description"></textarea>
+                                <button onclick="addEvent()">Add Event</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <h3>Today's Schedule</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="schedule-list" id="scheduleList"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-  </section>
 
-  <!-- ✅ About Me Section -->
-  <section id="about" class="reveal">
-    <h2>About Me</h2>
-    <div class="container about-content">
-      <p>
-        I’m <strong>Novely Aguilar Gasis Jr.</strong>, an <strong>aspiring web developer</strong> and recent
-        <strong>BS Computer Science graduate</strong> from Capiz State University.
-      </p>
-
-      <p>
-        I’m on a journey to improve my front-end development skills and learn how to create meaningful, user-friendly web experiences.
-        My goal is to grow as a developer who builds digital solutions that make a positive impact.
-      </p>
-
-      <div class="about-extra">
-        <p><strong>🎓 Education:</strong> Bachelor of Science in Computer Science — Capiz State University (July 2025)</p>
-        <p><strong>💡 Core Traits:</strong> Curiosity, Dedication, Problem-Solving, Continuous Learning</p>
-        <p><strong>🎨 Interests:</strong> Designing, Drawing, and DIY projects</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ✅ Learning Journey / Projects -->
-  <section id="projects" class="reveal">
-    <h2>My Learning Journey</h2>
-    <div class="container projects-grid">
-      <div class="project-card">
-        <h3>🌱 Beginner Portfolio Website</h3>
-        <p>
-          This very website is my first major project — built using only HTML, CSS, and JavaScript as I learn and practice front-end web development.
-        </p>
-      </div>
-
-      <div class="project-card">
-        <h3>💻 Simple Login Form (Practice)</h3>
-        <p>
-          A small project where I practiced form validation and basic styling using HTML, CSS, and vanilla JavaScript.
-        </p>
-      </div>
-
-      <div class="project-card upcoming">
-        <h3>🚧 Future Project Coming Soon!</h3>
-        <p>
-          I’m continuously learning and exploring new technologies — more projects will be added as I progress!
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ✅ Skills -->
-  <section id="skills" class="reveal">
-    <h2>Skills I’m Learning</h2>
-    <div class="container skills-grid">
-      <span class="skill-tag">HTML5</span>
-      <span class="skill-tag">CSS3</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Responsive Design</span>
-      <span class="skill-tag">Git / GitHub</span>
-      <span class="skill-tag">Canva (Design)</span>
-      <span class="skill-tag">Continuous Learning</span>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; <span id="year-footer"></span> Novely Aguilar Gasis Jr. | Aspiring Web Developer</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
