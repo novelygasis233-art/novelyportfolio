@@ -1,111 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Novely Gasis Jr. | Aspiring Web Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Life Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
-    <nav class="navbar container">
-      <div class="logo">Novely Gasis Jr.</div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="nav-item active">Home</a></li>
-        <li><a href="#about" class="nav-item">About</a></li>
-        <li><a href="#projects" class="nav-item">Projects</a></li>
-        <li><a href="#skills" class="nav-item">Skills</a></li>
-      </ul>
-      <div class="nav-icons">
-        <div class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</div>
-        <div class="menu-toggle" id="menu-toggle">☰</div>
-      </div>
-    </nav>
-  </header>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> Life Management Dashboard</h1>
+                <div class="user-info">
+                    <span id="currentDate"></span>
+                    <div class="theme-toggle">
+                        <button id="themeBtn"><i class="fas fa-moon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-  <!-- ✅ Hero Section -->
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <img src="image.jpg" alt="Profile" class="profile-pic" />
-      <h1>Hi, I'm <span>Novely Gasis Jr.</span></h1>
-      <h2 class="typewriter">Aspiring Web Developer</h2>
-      <p>
-        I’m passionate about learning how to build clean, creative, and responsive websites using
-        <strong>HTML, CSS, and JavaScript.</strong>  
-        This portfolio showcases my learning journey and future projects as I grow in web development.
-      </p>
-      <a href="#projects" class="btn scroll-btn">See My Journey</a>
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="dashboard">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </button>
+            <button class="nav-tab" data-tab="habits">
+                <i class="fas fa-check-circle"></i> Habits
+            </button>
+            <button class="nav-tab" data-tab="goals">
+                <i class="fas fa-bullseye"></i> Goals
+            </button>
+            <button class="nav-tab" data-tab="finance">
+                <i class="fas fa-wallet"></i> Finance
+            </button>
+            <button class="nav-tab" data-tab="health">
+                <i class="fas fa-heartbeat"></i> Health
+            </button>
+            <button class="nav-tab" data-tab="tasks">
+                <i class="fas fa-tasks"></i> Tasks
+            </button>
+            <button class="nav-tab" data-tab="milestones">
+                <i class="fas fa-trophy"></i> Milestones
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="streakCount">0</h3>
+                            <p>Day Streak</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="goalsCompleted">0</h3>
+                            <p>Goals Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="monthlySavings">$0</h3>
+                            <p>Monthly Savings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="healthScore">0%</h3>
+                            <p>Health Score</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h3>Habit Progress (Last 7 Days)</h3>
+                        <canvas id="habitsChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Monthly Expenses</h3>
+                        <canvas id="expensesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habits Tab -->
+            <div id="habits" class="tab-content">
+                <div class="section-header">
+                    <h2>Daily Habits</h2>
+                    <button class="btn btn-primary" id="addHabitBtn">
+                        <i class="fas fa-plus"></i> Add Habit
+                    </button>
+                </div>
+                <div class="habits-grid" id="habitsGrid">
+                    <!-- Habits will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Goals Tab -->
+            <div id="goals" class="tab-content">
+                <div class="section-header">
+                    <h2>Life Goals</h2>
+                    <button class="btn btn-primary" id="addGoalBtn">
+                        <i class="fas fa-plus"></i> Add Goal
+                    </button>
+                </div>
+                <div class="goals-container" id="goalsContainer">
+                    <!-- Goals will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Finance Tab -->
+            <div id="finance" class="tab-content">
+                <div class="section-header">
+                    <h2>Financial Management</h2>
+                    <button class="btn btn-primary" id="addTransactionBtn">
+                        <i class="fas fa-plus"></i> Add Transaction
+                    </button>
+                </div>
+                <div class="finance-grid">
+                    <div class="budget-card">
+                        <h3>Monthly Budget</h3>
+                        <div class="budget-item">
+                            <span>Income</span>
+                            <span id="monthlyIncome">$0</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Expenses</span>
+                            <span id="monthlyExpenses">$0</span>
+                        </div>
+                        <div class="budget-item total">
+                            <span>Savings</span>
+                            <span id="monthlySavingsAmount">$0</span>
+                        </div>
+                    </div>
+                    <div class="transactions-card">
+                        <h3>Recent Transactions</h3>
+                        <div id="transactionsList">
+                            <!-- Transactions will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Tab -->
+            <div id="health" class="tab-content">
+                <div class="section-header">
+                    <h2>Health & Wellness</h2>
+                    <button class="btn btn-primary" id="addHealthEntryBtn">
+                        <i class="fas fa-plus"></i> Add Entry
+                    </button>
+                </div>
+                <div class="health-grid">
+                    <div class="health-card">
+                        <h3>Today's Health</h3>
+                        <div class="health-metric">
+                            <label>Weight (kg)</label>
+                            <input type="number" id="weightInput" placeholder="Enter weight">
+                        </div>
+                        <div class="health-metric">
+                            <label>Sleep Hours</label>
+                            <input type="number" id="sleepInput" placeholder="Enter sleep hours">
+                        </div>
+                        <div class="health-metric">
+                            <label>Exercise Minutes</label>
+                            <input type="number" id="exerciseInput" placeholder="Enter exercise minutes">
+                        </div>
+                        <div class="health-metric">
+                            <label>Water Glasses</label>
+                            <input type="number" id="waterInput" placeholder="Enter water glasses">
+                        </div>
+                        <button class="btn btn-primary" id="saveHealthBtn">Save Today's Data</button>
+                    </div>
+                    <div class="health-chart-card">
+                        <h3>Health Trends</h3>
+                        <canvas id="healthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks Tab -->
+            <div id="tasks" class="tab-content">
+                <div class="section-header">
+                    <h2>Task Management</h2>
+                    <button class="btn btn-primary" id="addTaskBtn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+                <div class="task-input">
+                    <input type="text" id="taskInput" placeholder="Enter new task...">
+                    <select id="taskPriority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <button class="btn btn-primary" id="addTaskButton">Add</button>
+                </div>
+                <div class="tasks-container" id="tasksContainer">
+                    <!-- Tasks will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Milestones Tab -->
+            <div id="milestones" class="tab-content">
+                <div class="section-header">
+                    <h2>Life Milestones</h2>
+                    <button class="btn btn-primary" id="addMilestoneBtn">
+                        <i class="fas fa-plus"></i> Add Milestone
+                    </button>
+                </div>
+                <div class="milestones-container" id="milestonesContainer">
+                    <!-- Milestones will be dynamically added here -->
+                </div>
+            </div>
+        </main>
     </div>
-  </section>
 
-  <!-- ✅ About Me Section -->
-  <section id="about" class="reveal">
-    <h2>About Me</h2>
-    <div class="container about-content">
-      <p>
-        I’m <strong>Novely Aguilar Gasis Jr.</strong>, an <strong>aspiring web developer</strong> and recent
-        <strong>BS Computer Science graduate</strong> from Capiz State University.
-      </p>
-
-      <p>
-        I’m on a journey to improve my front-end development skills and learn how to create meaningful, user-friendly web experiences.
-        My goal is to grow as a developer who builds digital solutions that make a positive impact.
-      </p>
-
-      <div class="about-extra">
-        <p><strong>🎓 Education:</strong> Bachelor of Science in Computer Science — Capiz State University (July 2025)</p>
-        <p><strong>💡 Core Traits:</strong> Curiosity, Dedication, Problem-Solving, Continuous Learning</p>
-        <p><strong>🎨 Interests:</strong> Designing, Drawing, and DIY projects</p>
-      </div>
+    <!-- Modals -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Item</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be dynamically added here -->
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- ✅ Learning Journey / Projects -->
-  <section id="projects" class="reveal">
-    <h2>My Learning Journey</h2>
-    <div class="container projects-grid">
-      <div class="project-card">
-        <h3>🌱 Beginner Portfolio Website</h3>
-        <p>
-          This very website is my first major project — built using only HTML, CSS, and JavaScript as I learn and practice front-end web development.
-        </p>
-      </div>
-
-      <div class="project-card">
-        <h3>💻 Simple Login Form (Practice)</h3>
-        <p>
-          A small project where I practiced form validation and basic styling using HTML, CSS, and vanilla JavaScript.
-        </p>
-      </div>
-
-      <div class="project-card upcoming">
-        <h3>🚧 Future Project Coming Soon!</h3>
-        <p>
-          I’m continuously learning and exploring new technologies — more projects will be added as I progress!
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ✅ Skills -->
-  <section id="skills" class="reveal">
-    <h2>Skills I’m Learning</h2>
-    <div class="container skills-grid">
-      <span class="skill-tag">HTML5</span>
-      <span class="skill-tag">CSS3</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Responsive Design</span>
-      <span class="skill-tag">Git / GitHub</span>
-      <span class="skill-tag">Canva (Design)</span>
-      <span class="skill-tag">Continuous Learning</span>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; <span id="year-footer"></span> Novely Aguilar Gasis Jr. | Aspiring Web Developer</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
