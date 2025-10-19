@@ -1,0 +1,127 @@
+:root{
+  --bg: #0b0c0f;
+  --panel: #12141a;
+  --text: #e7e9ee;
+  --muted: #a2a7b4;
+  --accent: #7c5cff;
+  --accent-2: #22c55e;
+  --danger: #ef4444;
+  --border: #262a36;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* Light theme defaults; dark is applied by default then toggled if system prefers light */
+body.light{
+  --bg: #f6f7fb;
+  --panel: #ffffff;
+  --text: #0b0c0f;
+  --muted: #505666;
+  --accent: #6544ff;
+  --accent-2: #16a34a;
+  --danger: #dc2626;
+  --border: #e8eaf1;
+  --shadow: 0 10px 25px rgba(0,0,0,.06);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text); font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+}
+
+.app-header{
+  position:sticky; top:0; z-index:10; background:var(--bg); border-bottom:1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+.branding{display:flex; align-items:center; gap:.5rem; padding:1rem 1.25rem}
+.logo{font-size:1.5rem}
+.app-title{margin:0; font-size:1.15rem; letter-spacing:.2px}
+.tabs{display:flex; gap:.5rem; padding:.5rem 1rem 1rem 1rem; flex-wrap:wrap}
+.tab-button{
+  appearance:none; border:1px solid var(--border); background:var(--panel); color:var(--text);
+  padding:.5rem .75rem; border-radius:.6rem; cursor:pointer; transition: all .15s ease; box-shadow: var(--shadow);
+}
+.tab-button:hover{transform:translateY(-1px)}
+.tab-button.active{background:var(--accent); border-color:transparent}
+
+.container{max-width:1100px; margin: 1.25rem auto; padding: 0 1rem}
+.section-header{display:flex; align-items:center; justify-content:space-between; gap:1rem; margin: .5rem 0 1rem}
+.date-badge{padding:.35rem .6rem; border-radius:.5rem; background:var(--panel); border:1px solid var(--border); color:var(--muted)}
+
+.grid{display:grid; gap:1rem}
+.grid.two{grid-template-columns: repeat(2, minmax(0, 1fr))}
+.grid.three{grid-template-columns: repeat(3, minmax(0, 1fr))}
+@media (max-width: 900px){
+  .grid.two, .grid.three{grid-template-columns: 1fr}
+}
+
+.card{
+  background:var(--panel); border:1px solid var(--border); border-radius:1rem; padding:1rem; box-shadow:var(--shadow);
+}
+.card.center{display:flex; flex-direction:column; align-items:center; justify-content:center}
+
+h2{margin:.25rem 0 .5rem}
+h3{margin:.25rem 0 .75rem}
+
+.row{display:flex; align-items:center}
+.row.wrap{flex-wrap:wrap}
+.gap{gap:.5rem}
+.gap-sm{gap:.35rem}
+
+.btn{
+  appearance:none; border:1px solid var(--border); background:var(--panel); color:var(--text);
+  padding:.5rem .75rem; border-radius:.6rem; cursor:pointer; transition: all .12s ease;
+}
+.btn:hover{transform: translateY(-1px)}
+.btn.primary{background:var(--accent); border-color: transparent; color:white}
+.btn.danger{background: var(--danger); color:white; border-color: transparent}
+
+input, select, textarea{
+  background:var(--panel); border:1px solid var(--border); color:var(--text);
+  padding:.5rem .6rem; border-radius:.6rem; outline:none; min-width:0;
+}
+textarea{width:100%;}
+
+.list{list-style:none; margin:0; padding:0}
+.task-list li{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:.6rem;
+  padding:.55rem .6rem; border:1px solid var(--border); border-radius:.6rem; margin:.35rem 0; background: rgba(255,255,255,.01);
+}
+.task-list .title{font-weight:600}
+.task-list .meta{display:flex; gap:.4rem; align-items:center}
+.tag{display:inline-flex; align-items:center; gap:.35rem; padding:.2rem .5rem; border-radius:.5rem; border:1px solid var(--border); color:var(--muted)}
+.tag.large{font-size:1rem; padding:.35rem .6rem}
+.timer-display{font-variant-numeric: tabular-nums; font-weight:700; letter-spacing:1px; font-size:1.25rem}
+.timer-display.big{font-size:3.5rem; margin:.5rem 0 1rem}
+
+.progress{position:relative; height:.75rem; background: transparent; border:1px solid var(--border); border-radius:999px; overflow:hidden}
+.progress-bar{height:100%; background: linear-gradient(90deg, var(--accent), var(--accent-2))}
+
+.mood-picker{display:flex; gap:.4rem}
+.mood-picker button{font-size:1.35rem; line-height:1; padding:.25rem .35rem; border-radius:.5rem; border:1px solid var(--border); background:var(--panel); cursor:pointer}
+.mood-picker button[aria-checked="true"]{outline:2px solid var(--accent)}
+
+.habit-grid{width:100%; overflow:auto}
+.habit-grid-header{display:grid; grid-template-columns: 2fr 1fr 3fr; gap:.75rem; padding:.5rem 0; color:var(--muted)}
+.habit-rows{display:flex; flex-direction:column; gap:.4rem}
+.habit-row{display:grid; grid-template-columns: 2fr 1fr 3fr; gap:.75rem; align-items:center}
+.habit-row .week{display:grid; grid-template-columns: repeat(7, 1fr); gap:.35rem}
+.habit-row .week button{padding:.4rem .2rem; border-radius:.4rem; border:1px solid var(--border); background:var(--panel); cursor:pointer}
+.habit-row .week button.done{background: var(--accent-2); color:white; border-color: transparent}
+
+.center{text-align:center}
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace}
+.small{font-size:.85rem}
+.muted{color:var(--muted)}
+
+.app-footer{padding:2rem 1rem; text-align:center; color:var(--muted)}
+
+.view[hidden]{display:none}
+.view.active{display:block}
+
+/* Respect system preference: default to dark; switch to light if prefers light */
+@media (prefers-color-scheme: light){
+  body:not(.dark){
+    /* set light mode vars via .light override class on body */
+  }
+}

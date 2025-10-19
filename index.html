@@ -1,111 +1,255 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Novely Gasis Jr. | Aspiring Web Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <nav class="navbar container">
-      <div class="logo">Novely Gasis Jr.</div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="nav-item active">Home</a></li>
-        <li><a href="#about" class="nav-item">About</a></li>
-        <li><a href="#projects" class="nav-item">Projects</a></li>
-        <li><a href="#skills" class="nav-item">Skills</a></li>
-      </ul>
-      <div class="nav-icons">
-        <div class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</div>
-        <div class="menu-toggle" id="menu-toggle">☰</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LifeCycle Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="branding">
+        <div class="logo" aria-hidden="true">🌿</div>
+        <h1 class="app-title">LifeCycle Planner</h1>
       </div>
-    </nav>
-  </header>
+      <nav class="tabs" aria-label="Primary">
+        <button class="tab-button active" data-view="today" aria-controls="view-today">Today</button>
+        <button class="tab-button" data-view="habits" aria-controls="view-habits">Habits</button>
+        <button class="tab-button" data-view="tasks" aria-controls="view-tasks">Tasks</button>
+        <button class="tab-button" data-view="focus" aria-controls="view-focus">Focus</button>
+        <button class="tab-button" data-view="wellness" aria-controls="view-wellness">Wellness</button>
+        <button class="tab-button" data-view="settings" aria-controls="view-settings" title="Settings">⚙️</button>
+      </nav>
+    </header>
 
-  <!-- ✅ Hero Section -->
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <img src="image.jpg" alt="Profile" class="profile-pic" />
-      <h1>Hi, I'm <span>Novely Gasis Jr.</span></h1>
-      <h2 class="typewriter">Aspiring Web Developer</h2>
-      <p>
-        I’m passionate about learning how to build clean, creative, and responsive websites using
-        <strong>HTML, CSS, and JavaScript.</strong>  
-        This portfolio showcases my learning journey and future projects as I grow in web development.
-      </p>
-      <a href="#projects" class="btn scroll-btn">See My Journey</a>
-    </div>
-  </section>
+    <main class="container">
+      <!-- TODAY -->
+      <section id="view-today" class="view active" aria-labelledby="tab-today">
+        <div class="section-header">
+          <h2>Today</h2>
+          <div id="today-date" class="date-badge" title="Current date"></div>
+        </div>
 
-  <!-- ✅ About Me Section -->
-  <section id="about" class="reveal">
-    <h2>About Me</h2>
-    <div class="container about-content">
-      <p>
-        I’m <strong>Novely Aguilar Gasis Jr.</strong>, an <strong>aspiring web developer</strong> and recent
-        <strong>BS Computer Science graduate</strong> from Capiz State University.
-      </p>
+        <div class="grid two">
+          <div class="card">
+            <h3>Quick Add</h3>
+            <form id="today-quick-add" class="row gap" autocomplete="off">
+              <input id="today-quick-title" type="text" placeholder="New task..." aria-label="New task title" required />
+              <button type="submit" class="btn primary">Add</button>
+            </form>
+            <ul id="today-task-list" class="list task-list" aria-live="polite"></ul>
+          </div>
 
-      <p>
-        I’m on a journey to improve my front-end development skills and learn how to create meaningful, user-friendly web experiences.
-        My goal is to grow as a developer who builds digital solutions that make a positive impact.
-      </p>
+          <div class="card">
+            <h3>Notes</h3>
+            <textarea id="today-notes" rows="8" placeholder="What matters today?"></textarea>
+          </div>
+        </div>
 
-      <div class="about-extra">
-        <p><strong>🎓 Education:</strong> Bachelor of Science in Computer Science — Capiz State University (July 2025)</p>
-        <p><strong>💡 Core Traits:</strong> Curiosity, Dedication, Problem-Solving, Continuous Learning</p>
-        <p><strong>🎨 Interests:</strong> Designing, Drawing, and DIY projects</p>
-      </div>
-    </div>
-  </section>
+        <div class="grid three">
+          <div class="card">
+            <h3>Water</h3>
+            <div class="water">
+              <div class="progress" aria-label="Water progress">
+                <div id="water-progress" class="progress-bar" style="width:0%"></div>
+              </div>
+              <div class="row gap">
+                <button id="water-minus" class="btn">−</button>
+                <div id="water-count" class="mono">0 / 8 cups</div>
+                <button id="water-plus" class="btn">＋</button>
+              </div>
+            </div>
+          </div>
 
-  <!-- ✅ Learning Journey / Projects -->
-  <section id="projects" class="reveal">
-    <h2>My Learning Journey</h2>
-    <div class="container projects-grid">
-      <div class="project-card">
-        <h3>🌱 Beginner Portfolio Website</h3>
-        <p>
-          This very website is my first major project — built using only HTML, CSS, and JavaScript as I learn and practice front-end web development.
-        </p>
-      </div>
+          <div class="card">
+            <h3>Mood</h3>
+            <div id="mood-picker" class="mood-picker" role="radiogroup" aria-label="Mood">
+              <!-- mood buttons injected by JS -->
+            </div>
+          </div>
 
-      <div class="project-card">
-        <h3>💻 Simple Login Form (Practice)</h3>
-        <p>
-          A small project where I practiced form validation and basic styling using HTML, CSS, and vanilla JavaScript.
-        </p>
-      </div>
+          <div class="card">
+            <h3>Focus</h3>
+            <div class="focus-mini">
+              <div id="mini-timer" class="timer-display">25:00</div>
+              <div class="row gap">
+                <button id="mini-start" class="btn primary">Start</button>
+                <button id="mini-pause" class="btn">Pause</button>
+                <button id="mini-open" class="btn">Open</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div class="project-card upcoming">
-        <h3>🚧 Future Project Coming Soon!</h3>
-        <p>
-          I’m continuously learning and exploring new technologies — more projects will be added as I progress!
-        </p>
-      </div>
-    </div>
-  </section>
+      <!-- HABITS -->
+      <section id="view-habits" class="view" hidden>
+        <div class="section-header">
+          <h2>Habits</h2>
+          <form id="habit-form" class="row gap">
+            <input id="habit-name" type="text" placeholder="Habit name (e.g., Read 10 pages)" required />
+            <select id="habit-frequency" aria-label="Frequency">
+              <option value="daily" selected>Daily</option>
+              <option value="weekly">Weekly</option>
+            </select>
+            <div id="habit-dow" class="dow" aria-label="Days of week" hidden>
+              <label><input type="checkbox" value="1" />Mon</label>
+              <label><input type="checkbox" value="2" />Tue</label>
+              <label><input type="checkbox" value="3" />Wed</label>
+              <label><input type="checkbox" value="4" />Thu</label>
+              <label><input type="checkbox" value="5" />Fri</label>
+              <label><input type="checkbox" value="6" />Sat</label>
+              <label><input type="checkbox" value="0" />Sun</label>
+            </div>
+            <button type="submit" class="btn primary">Add Habit</button>
+          </form>
+        </div>
 
-  <!-- ✅ Skills -->
-  <section id="skills" class="reveal">
-    <h2>Skills I’m Learning</h2>
-    <div class="container skills-grid">
-      <span class="skill-tag">HTML5</span>
-      <span class="skill-tag">CSS3</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Responsive Design</span>
-      <span class="skill-tag">Git / GitHub</span>
-      <span class="skill-tag">Canva (Design)</span>
-      <span class="skill-tag">Continuous Learning</span>
-    </div>
-  </section>
+        <div class="card">
+          <div class="habit-grid">
+            <div class="habit-grid-header">
+              <div>Habit</div>
+              <div id="habit-week-label" class="mono"></div>
+              <div class="week-days">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+            </div>
+            <div id="habit-rows" class="habit-rows"></div>
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    <p>&copy; <span id="year-footer"></span> Novely Aguilar Gasis Jr. | Aspiring Web Developer</p>
-  </footer>
+      <!-- TASKS -->
+      <section id="view-tasks" class="view" hidden>
+        <div class="section-header">
+          <h2>Tasks</h2>
+          <form id="task-form" class="row wrap gap" autocomplete="off">
+            <input id="task-title" type="text" placeholder="Task title" required />
+            <input id="task-due" type="date" aria-label="Due date" />
+            <select id="task-priority" aria-label="Priority">
+              <option value="normal" selected>Priority: Normal</option>
+              <option value="high">Priority: High</option>
+              <option value="low">Priority: Low</option>
+            </select>
+            <label class="row gap-sm"><input id="task-today" type="checkbox" /> Add to Today</label>
+            <button type="submit" class="btn primary">Add Task</button>
+            <input id="task-search" type="search" placeholder="Search tasks" />
+            <select id="task-filter" aria-label="Filter">
+              <option value="active" selected>Active</option>
+              <option value="all">All</option>
+              <option value="done">Completed</option>
+            </select>
+          </form>
+        </div>
 
-  <script src="script.js"></script>
-</body>
+        <ul id="task-list" class="list task-list" aria-live="polite"></ul>
+      </section>
+
+      <!-- FOCUS -->
+      <section id="view-focus" class="view" hidden>
+        <div class="section-header">
+          <h2>Focus</h2>
+          <div class="row gap">
+            <select id="focus-task-select" aria-label="Focus task"></select>
+            <div id="session-info" class="tag">Session 0</div>
+          </div>
+        </div>
+
+        <div class="card center">
+          <div id="focus-phase" class="tag large">Focus</div>
+          <div id="focus-timer" class="timer-display big">25:00</div>
+          <div class="row gap">
+            <button id="focus-start" class="btn primary">Start</button>
+            <button id="focus-pause" class="btn">Pause</button>
+            <button id="focus-reset" class="btn">Reset</button>
+            <button id="focus-next" class="btn">Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- WELLNESS -->
+      <section id="view-wellness" class="view" hidden>
+        <div class="section-header">
+          <h2>Wellness</h2>
+        </div>
+
+        <div class="grid three">
+          <div class="card">
+            <h3>Mood</h3>
+            <div id="wellness-mood-picker" class="mood-picker" role="radiogroup" aria-label="Mood"></div>
+          </div>
+
+          <div class="card">
+            <h3>Water</h3>
+            <div class="water">
+              <div class="progress">
+                <div id="wellness-water-progress" class="progress-bar"></div>
+              </div>
+              <div class="row gap">
+                <button id="wellness-water-minus" class="btn">−</button>
+                <div id="wellness-water-count" class="mono">0 / 8 cups</div>
+                <button id="wellness-water-plus" class="btn">＋</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Sleep</h3>
+            <div class="row gap">
+              <input id="sleep-hours" type="number" min="0" max="24" step="0.5" aria-label="Sleep hours" />
+              <button id="save-sleep" class="btn">Save</button>
+            </div>
+            <div id="sleep-note" class="muted small"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="view-settings" class="view" hidden>
+        <div class="section-header">
+          <h2>Settings</h2>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Appearance</h3>
+            <label class="row gap-sm"><input id="toggle-dark" type="checkbox" /> Dark mode</label>
+          </div>
+
+          <div class="card">
+            <h3>Pomodoro</h3>
+            <div class="grid two">
+              <label>Focus minutes <input id="set-focus-min" type="number" min="1" max="120" /></label>
+              <label>Break minutes <input id="set-break-min" type="number" min="1" max="60" /></label>
+              <label>Long break <input id="set-longbreak-min" type="number" min="1" max="60" /></label>
+              <label>Long break every <input id="set-longbreak-every" type="number" min="2" max="12" /></label>
+            </div>
+            <label class="row gap-sm"><input id="set-auto-next" type="checkbox" /> Auto start next session</label>
+          </div>
+
+          <div class="card">
+            <h3>Data</h3>
+            <div class="row wrap gap">
+              <button id="export-data" class="btn">Export JSON</button>
+              <label class="btn">Import JSON <input id="import-data" type="file" accept="application/json" hidden /></label>
+              <button id="reset-data" class="btn danger">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div>Made with care for modern life cycles • <a href="https://opensource.org/license/mit" target="_blank" rel="noreferrer">MIT</a></div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
 </html>
